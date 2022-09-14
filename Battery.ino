@@ -1,8 +1,8 @@
 // Functions for Battery Monitoring
 
 int batterySensor = 34; // Battery Sensor is located to GPIO 34
-float bHigh = 0.0;      // UPDATE THIS CODE -- Analog Value read at 5.0 volts
-float bLow = 0.0;       // UPDATE THIS CODE -- Analog Value read at 3.0 volts
+float bHigh = 905.0;      // Analog Value read at 5.0 volts
+float bLow = 450.0;       // Analog Value read at 3.0 volts
 float vHigh = 5.0;      // Test volts at 5.0 volts
 float vLow = 3.0;       // Test volts at 3.0 volts
 float chargeMax = 4.2;  // Fully Charged Battery
