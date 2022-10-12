@@ -20,4 +20,15 @@
     case 6: sendLetter('"'); break; //Switch 8
     case 7: sendLetter(':'); break; //Switch 9
     case 8: sendLetter('_'); break; //Switch 7
+
+   print words cause fun
+    case 0: bleKeyboard.print("bruh."); break; //Switch 1 
+    case 1: bleKeyboard.print("no time run"); break; //Switch 4
+    case 2: bleKeyboard.print("kys"); break; //Switch 2
+    case 3: bleKeyboard.print("i have kit move"); break; //Switch 5
+    case 4: bleKeyboard.print("it stands for keep yourself safe"); break; //Switch 3
+    case 5: bleKeyboard.print("im hacking"); break; //Switch 6
+    case 6: bleKeyboard.print("uwu"); break; //Switch 8
+    case 7: bleKeyboard.print("owo"); break; //Switch 9
+    case 8: bleKeyboard.print("venmo me @rosawashere"); break; //Switch 7
 */

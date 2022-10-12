@@ -1,8 +1,7 @@
-// Functions for Battery Monitoring
-
+/* Functions for Battery Monitoring */
 int batterySensor = 34; // Battery Sensor is located to GPIO 34
-float bHigh = 905.0;      // Analog Value read at 5.0 volts
-float bLow = 450.0;       // Analog Value read at 3.0 volts
+float bHigh = 0.0;      // Analog Value read at 5.0 volts
+float bLow = 0.0;       // Analog Value read at 3.0 volts
 float vHigh = 5.0;      // Test volts at 5.0 volts
 float vLow = 3.0;       // Test volts at 3.0 volts
 float chargeMax = 4.2;  // Fully Charged Battery
@@ -36,8 +35,9 @@ void updateBattery(){ //updates the charge of the battery
   }
 }
 
-// The normal Arduino float( ) function only works with integers. 
-// This special function works with floating numbers for more precision
+/* Map Float */
+//The normal Arduino float( ) function only works with integers. 
+//This function works with floating numbers for more precision
 float mapFloat(float x, float in_min, float in_max, float out_min, float out_max){
   return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }

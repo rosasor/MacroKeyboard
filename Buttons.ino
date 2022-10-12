@@ -1,22 +1,20 @@
-// Functions for Button Control
-
-int charDelay = 8; //Amount of time between keypresses to avoid key buffer overflows
-
+/* Functions for Button Control */
+int charDelay = 12; // Amount of time between keypresses to avoid key buffer overflows
 
 /* initButtons */
 void initButtons() {
-  for (int i = 0; i < numButtons; i++) { //loops through the array of Bounce2 buttons
-    buttons[i].attach(buttonPins[i], INPUT);  //attaches them as inputs
-    buttons[i].interval(25); //sets an interval of 25ms for responsiveness
+  for (int i = 0; i < numButtons; i++) { // Loops through the array of Bounce2 buttons
+    buttons[i].attach(buttonPins[i], INPUT);  // Attaches them as inputs
+    buttons[i].interval(25); // Sets an interval of 25ms for responsiveness
   }
 }
 
 /* readButtons */
 void readButtons() {
-  for (int i = 0; i < numButtons; i++)  { //loops through the array of Bounce2 buttons
-    buttons[i].update(); //updates each of them
-    if (buttons[i].rose() ) { //checks to see if any button has risen
-      sendKey(i); //calls sendKey()
+  for (int i = 0; i < numButtons; i++)  { // Loops through the array of Bounce2 buttons
+    buttons[i].update(); // Updates each of them
+    if (buttons[i].rose() ) { // Checks to see if any button has risen
+      sendKey(i); // Calls sendKey()
     }
   }
 }
@@ -24,37 +22,27 @@ void readButtons() {
 /* sendKey */
 void sendKey(int k) {
   switch (k) { //takes one argument (int k) and uses a switch/case structure to call different functions
-    case 0: sendShortcut('x'); sendShortcut('s'); break;  //Switch 1, Save
-    case 1: sendShortcut('k'); break;                     //Switch 4, Cut line
-    case 2: sendShortcut('x'); sendShortcut('c'); break;  //Switch 2 Save and quit
-    case 3: sendShortcut('y'); break;                     //Switch 5, paste line
-    case 4: sendShortcut('x'); sendShortcut('f'); break;  //Switch 3, find file or open a file
-    case 5: sendShortcut('x'); sendLetter('u'); break;    //Switch 6, Undo last command
-    case 6: sendLetter('{'); break;                       //Switch 8, Type {
-    case 7: sendLetter('"'); break;                       //Switch 9, Type "
-    case 8: sendLetter(')'); break;                       //Switch 7, Type )
-
-    /*case 0: sendLetter('x'); break;
-    case 1: sendLetter('c'); break;
-    case 2: sendLetter('v'); break;
-    case 3: sendLetter('a'); break;
-    case 4: sendLetter('z'); break;
-    case 5: sendLetter('y'); break;
-    case 6: sendLetter('m'); break;
-    case 7: sendLetter('P'); break;
-    case 8: sendLetter('?'); break;*/
-
+    case 0: sendLetter('y'); sendMacro("bruh. ", charDelay); sendLetter(KEY_RETURN); break; // Switch 1
+    case 1: sendLetter('y'); sendMacro("no time run ", charDelay); sendLetter(KEY_RETURN); break; break; // Switch 4
+    case 2: sendLetter('y'); sendMacro("kys ", charDelay); sendLetter(KEY_RETURN); break; break; // Switch 2
+    case 3: sendLetter('y'); sendMacro("i have kit move ", charDelay); sendLetter(KEY_RETURN); break; break; // Switch 5
+    case 4: sendLetter('y'); sendMacro("it stands for keep yourself safe ", charDelay); sendLetter(KEY_RETURN); break; break; // Switch 3
+    case 5: sendLetter('y'); sendMacro("im hacking ", charDelay); sendLetter(KEY_RETURN); break; break; // Switch 6
+    case 6: sendLetter('y'); sendMacro("uwu ", charDelay); sendLetter(KEY_RETURN); break; break; // Switch 8
+    case 7: sendLetter('y'); sendMacro("owo ", charDelay); sendLetter(KEY_RETURN); break; break; // Switch 9
+    case 8: sendLetter('y'); sendMacro("venmo me @rosawashere ", charDelay); sendLetter(KEY_RETURN); break; break; // Switch 7
   }
 }
 
 /* sendLetter */
-void sendLetter(char c) { //takes one argument (char c)
-  bleKeyboard.write(c); delay(charDelay);
+void sendLetter(char c) { // Takes one argument (char c)
+  bleKeyboard.press(c); delay(charDelay);
+  bleKeyboard.release(c); delay(charDelay);
   bleKeyboard.releaseAll();
 }
 
 /* sendShortcut */
-void sendShortcut(char c) { //takes one argument (char c) and combines it with a modifier (CRTL, CMD, ALT, SHIFT, etc.)
+void sendShortcut(char c) { // Takes one argument (char c) and combines it with a modifier (CRTL, CMD, ALT, SHIFT, etc.)
   bleKeyboard.press(KEY_LEFT_CTRL); delay(charDelay);
   bleKeyboard.press(c); delay(charDelay);
   bleKeyboard.release(c); delay(charDelay);
@@ -63,12 +51,12 @@ void sendShortcut(char c) { //takes one argument (char c) and combines it with a
 }
 
 /* sendCompound */
-void sendCompound(char c) { //takes one argument (char c) and combines it with multiple modifiers (CRTL, CMD, ALT, SHIFT, etc.)
+void sendCompound(char c) { // Takes one argument (char c) and combines it with multiple modifiers (CRTL, CMD, ALT, SHIFT, etc.)
   bleKeyboard.releaseAll();
 }
 
 /* sendMacro */
-void sendMacro(String s, int d) { //takes one argument (String s) and sends the string one character at a time.
+void sendMacro(String s, int d) { // Takes one argument (String s) and sends the string one character at a time.
   int l = s.length() + 1;           // Determine length of string
   char c[l];                        // Create array for characters
   s.toCharArray(c, l);              // Copy characters to array
